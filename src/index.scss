@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+//FONTS
+$fontfamily: "Open Sans";
+
+//COLORS
+$yellow: #fff159;
+$darkgrey: #333333;
+$middlegrey: #666666;
+$uppergrey: #999999;
+$lightgrey: #eeeeee;
+$white: #ffffff;
+$blue: #3483fa;
+$darkblue: #1c65d3;
+
+//SIZES
+$small: 12px;
+$medium: 14px;
+$normal: 16px;
+$main: 18px;
+$large: 24px;
+$mlarge: 28px;
+$xlarge: 46px;
+
+//GENERALS
+body {
+  font-family: $fontfamily;
+  background-color: $lightgrey !important;
+}
+
+.fs-12 {
+  font-size: $small !important;
+}
+
+.fs-14 {
+  font-size: $medium !important;
+}
+.fs-16 {
+  font-size: $normal !important;
+}
+.fs-18 {
+  font-size: $main !important;
+}
+
+.fs-24 {
+  font-size: $large !important;
+}
+
+.fs-28 {
+  font-size: $mlarge !important;
+}
+
+.fs-46 {
+  font-size: $xlarge !important;
+}
+
+.pt-12 {
+  padding-top: 12px;
+}
+.pb-12 {
+  padding-bottom: 12px;
+}
+
+.pb-16 {
+  padding-bottom: 16px;
+}
+
+.pt-16 {
+  padding-top: 16px;
+}
+
+.pb-32 {
+  padding-bottom: 32px;
+}
+
+.pt-32 {
+  padding-top: 32px;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.p-32 {
+  padding: 32px !important;
+}
+
+.productList {
+  background-color: $white;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.btnBlue {
+  background-color: $blue !important;
+}
+
+.btnBlue:hover {
+  background-color: $darkblue !important;
+}

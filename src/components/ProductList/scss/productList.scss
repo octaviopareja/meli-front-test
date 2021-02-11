@@ -1,0 +1,10 @@
+@import "../../../index.scss";
+
+.productList ul li {
+  padding-bottom: 16px;
+  border-bottom: 1px solid $lightgrey;
+}
+
+.productList ul li:last-child {
+  border-bottom: 0;
+}

@@ -1,0 +1,16 @@
+@import "../../../index.scss";
+
+.location {
+  color: $middlegrey;
+}
+
+.imgProd {
+  width: 180px;
+  height: 180px;
+  margin-right: 16px;
+  border-radius: 4px;
+
+  @media (max-width: 768px) {
+    margin: 0 auto 20px auto;
+  }
+}
