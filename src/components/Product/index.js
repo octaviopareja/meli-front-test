@@ -35,7 +35,7 @@ export default function Product({
             </Link>
             <div>
               <h5 className="fs-24  mb-0 pb-32">
-                $ {price}{" "}
+                $ {price.toLocaleString("de-DE")}{" "}
                 {free_shipping ? (
                   <img src={shippingIcon} alt="Envio a todo el país" />
                 ) : (
