@@ -56,7 +56,7 @@ export default function ProductDetail(props) {
           <Row>
             <Col lg={12} xs={12} noGutters>
               <Row className="pt-16">
-                <Col sm={8} xs={12}>
+                <Col sm={8} xs={12} className="order-1 order-sm-0">
                   <Row className="pb-32">
                     <Col
                       sm={12}
@@ -87,7 +87,7 @@ export default function ProductDetail(props) {
                     </Col>
                   </Row>
                 </Col>
-                <Col sm={4} xs={12}>
+                <Col sm={4} xs={12} className="order-0 order-sm-1">
                   <span className="fs-14">
                     {`
                     ${item.condition === "new" ? "Nuevo" : "Usado"}
