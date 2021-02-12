@@ -1,6 +1,6 @@
 # Bienvenido
 
-Proyecto creado para una prueba ténica en MercadoLibre
+Proyecto creado para una prueba téncica FrontEnd en MercadoLibre
 
 Utilizando [Create React App](https://github.com/facebook/create-react-app).
 
