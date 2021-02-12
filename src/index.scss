@@ -26,6 +26,7 @@ $xlarge: 46px;
 body {
   font-family: $fontfamily;
   background-color: $lightgrey !important;
+  overflow-x: hidden !important;
 }
 
 .fs-12 {
