@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 
 export default function ProductList() {
   return (
-    <Container className="productList">
+    <Container className="productList mt-5">
       <Row>
         <Col md={12}>
           <p className="text-center p-5">Comienza buscando algo...</p>

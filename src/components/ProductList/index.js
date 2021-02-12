@@ -57,6 +57,7 @@ export default function ProductList() {
     });
 
     setCategories(data.filters[0].values[0].path_from_root);
+
     setItems(products);
   };
 
@@ -77,6 +78,7 @@ export default function ProductList() {
                     thumbnail={info.thumbnail}
                     location={info.location}
                     categories={categories}
+                    free_shipping={info.free_shipping}
                   />
                 </li>
               ))}

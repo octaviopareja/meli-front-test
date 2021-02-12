@@ -10,7 +10,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function Product({ id, title, price, thumbnail, location }) {
+export default function Product({
+  id,
+  title,
+  price,
+  thumbnail,
+  location,
+  free_shipping,
+}) {
   return (
     <Row>
       <Col lg={12} xs={12} noGutters>
@@ -28,7 +35,12 @@ export default function Product({ id, title, price, thumbnail, location }) {
             </Link>
             <div>
               <h5 className="fs-24  mb-0 pb-32">
-                $ {price} <img src={shippingIcon} alt="Envio a todo el país" />
+                $ {price}{" "}
+                {free_shipping ? (
+                  <img src={shippingIcon} alt="Envio a todo el país" />
+                ) : (
+                  ""
+                )}
               </h5>
               <h1 className="fs-18">{title}</h1>
             </div>

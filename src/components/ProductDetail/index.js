@@ -17,8 +17,6 @@ export default function ProductDetail(props) {
   const [item, setItem] = useState([]);
   const [itemDescrip, setItemDescrip] = useState(null);
   const [pictures, setPictures] = useState(null);
-  const [categoryId, setCategoryId] = useState(null);
-  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     const { location } = history;
@@ -27,7 +25,6 @@ export default function ProductDetail(props) {
     getItem(id);
   }, [history]);
 
-  //console.log("la url es " + url_Opciones);
   const axios = require("axios");
 
   const getItem = async (id) => {
@@ -41,27 +38,15 @@ export default function ProductDetail(props) {
     const dataDescrip = responseDescrip.data;
 
     console.log(data);
-    //console.log(data.pictures);
 
     setItem(data);
     setItemDescrip(dataDescrip);
     setPictures(data.pictures);
-    setCategoryId(data.category_id);
-  };
-
-  const getCategories = async (categoryId) => {
-    const apiurl = "https://api.mercadolibre.com";
-    const uriCats = `${apiurl}/categories/${categoryId}`;
-    const responseCats = await axios.get(uriCats);
-    const dataCats = responseCats.data;
-    console.log(dataCats.path_from_root);
-    setCategories(dataCats.path_from_root);
   };
 
   return (
     <>
-      {categories ? <Breadcrumb categories={categories} /> : ""}
-      <Container className="productList p-32">
+      <Container className="productList p-32 mt-5">
         <Row>
           <Col lg={12} xs={12} noGutters>
             <Row className="pt-16">

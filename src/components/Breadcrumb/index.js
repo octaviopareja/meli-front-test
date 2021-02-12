@@ -13,16 +13,14 @@ import Col from "react-bootstrap/Col";
 export default function Breadcrumb(props) {
   console.log(props.categories);
   return (
-    <Row>
-      <Container>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            {props.categories.map((category) => {
-              return <li class="breadcrumb-item">{`${category.name}`}</li>;
-            })}
-          </ol>
-        </nav>
-      </Container>
-    </Row>
+    <Container className="pl-0 pr-0">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          {props.categories.map((category) => {
+            return <li class="breadcrumb-item">{`${category.name}`}</li>;
+          })}
+        </ol>
+      </nav>
+    </Container>
   );
 }
