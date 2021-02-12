@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link, useHistory } from "react-router-dom";
-
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import Product from "../Product";
 
@@ -43,7 +41,7 @@ export default function ProductList() {
     const response = await axios.get(uri);
     const data = response.data;
 
-    console.log(data);
+    //console.log(data);
 
     const products = [];
 
@@ -59,7 +57,9 @@ export default function ProductList() {
       });
     });
 
-    setCategories(data.filters[0].values[0].path_from_root);
+    if (data.filters[0]) {
+      setCategories(data.filters[0].values[0].path_from_root);
+    }
 
     setItems(products);
 
@@ -70,7 +70,11 @@ export default function ProductList() {
     <>
       {!loading ? (
         <>
-          {categories ? <Breadcrumb categories={categories} /> : ""}
+          {categories ? (
+            <Breadcrumb categories={categories} />
+          ) : (
+            <div className="mt-5"></div>
+          )}
 
           <Container className="productList pb-16">
             <Row>

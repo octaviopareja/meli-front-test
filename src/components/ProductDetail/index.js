@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useHistory } from "react-router-dom";
-
-import Breadcrumb from "../Breadcrumb";
+import { useHistory } from "react-router-dom";
 
 import LoadingSpinner from "../Loading";
 
@@ -41,7 +39,7 @@ export default function ProductDetail(props) {
     const responseDescrip = await axios.get(uriDescrip);
     const dataDescrip = responseDescrip.data;
 
-    console.log(data);
+    // console.log(data);
 
     setItem(data);
     setItemDescrip(dataDescrip);
