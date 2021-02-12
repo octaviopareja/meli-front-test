@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 
 import Breadcrumb from "../Breadcrumb";
 
+import LoadingSpinner from "../Loading";
+
 /*CSS*/
 import "./scss/productDetail.scss";
 
@@ -17,12 +19,14 @@ export default function ProductDetail(props) {
   const [item, setItem] = useState([]);
   const [itemDescrip, setItemDescrip] = useState(null);
   const [pictures, setPictures] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const { location } = history;
     const { pathname } = location;
     const id = pathname.substring(7, pathname.length);
     getItem(id);
+    setLoading(true);
   }, [history]);
 
   const axios = require("axios");
@@ -42,44 +46,50 @@ export default function ProductDetail(props) {
     setItem(data);
     setItemDescrip(dataDescrip);
     setPictures(data.pictures);
+    setLoading(false);
   };
 
   return (
     <>
-      <Container className="productList p-32 mt-5">
-        <Row>
-          <Col lg={12} xs={12} noGutters>
-            <Row className="pt-16">
-              <Col sm={8} xs={12}>
-                <Row className="pb-32">
-                  <Col
-                    sm={12}
-                    xs={12}
-                    className="d-flex justify-content-center"
-                  >
-                    {pictures
-                      ? pictures
-                          .slice(0, 1)
-                          .map((info) => <img src={info.url} alt="img" />)
-                      : ""}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col sm={12} xs={12}>
-                    <div className="item__description">
-                      <h2 className="fs-28 pb-32">Descripción del producto</h2>
-                      <p className="fs-16 description">
-                        {itemDescrip
-                          ? itemDescrip.map((info) => <p> {info.plain_text}</p>)
-                          : ""}
-                      </p>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-              <Col sm={4} xs={12}>
-                <span className="fs-14">
-                  {`
+      {!loading ? (
+        <Container className="productList p-32 mt-5">
+          <Row>
+            <Col lg={12} xs={12} noGutters>
+              <Row className="pt-16">
+                <Col sm={8} xs={12}>
+                  <Row className="pb-32">
+                    <Col
+                      sm={12}
+                      xs={12}
+                      className="d-flex justify-content-center"
+                    >
+                      {pictures
+                        ? pictures
+                            .slice(0, 1)
+                            .map((info) => <img src={info.url} alt="img" />)
+                        : ""}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col sm={12} xs={12}>
+                      <div className="item__description">
+                        <h2 className="fs-28 pb-32">
+                          Descripción del producto
+                        </h2>
+                        <p className="fs-16 description">
+                          {itemDescrip
+                            ? itemDescrip.map((info) => (
+                                <p> {info.plain_text}</p>
+                              ))
+                            : ""}
+                        </p>
+                      </div>
+                    </Col>
+                  </Row>
+                </Col>
+                <Col sm={4} xs={12}>
+                  <span className="fs-14">
+                    {`
                     ${item.condition === "new" ? "Nuevo" : "Usado"}
                     ${
                       item.sold_quantity > 0
@@ -87,23 +97,26 @@ export default function ProductDetail(props) {
                         : ""
                     }
                   `}
-                </span>
-                <div className="pt-16">
-                  <h1 className="fs-24 fw-bold pb-32">{item.title}</h1>
-                  <h5 className="fs-46  mb-0 ">
-                    $ {item.price ? item.price.toLocaleString("de-DE") : ""}
-                  </h5>
-                </div>
-                <div className="pt-32">
-                  <button className="btn btn-primary w-100 btnBlue">
-                    Comprar
-                  </button>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+                  </span>
+                  <div className="pt-16">
+                    <h1 className="fs-24 fw-bold pb-32">{item.title}</h1>
+                    <h5 className="fs-46  mb-0 ">
+                      $ {item.price ? item.price.toLocaleString("de-DE") : ""}
+                    </h5>
+                  </div>
+                  <div className="pt-32">
+                    <button className="btn btn-primary w-100 btnBlue">
+                      Comprar
+                    </button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        <LoadingSpinner />
+      )}
     </>
   );
 }

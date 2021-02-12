@@ -8,6 +8,8 @@ import Product from "../Product";
 
 import Breadcrumb from "../Breadcrumb";
 
+import LoadingSpinner from "../Loading";
+
 /*CSS*/
 import "./scss/productList.scss";
 
@@ -19,6 +21,7 @@ import Col from "react-bootstrap/Col";
 export default function ProductList() {
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
@@ -28,7 +31,7 @@ export default function ProductList() {
     if (search === "?search=") {
       history.push("/");
     }
-
+    setLoading(true);
     searchService(search.substring(8, search.length));
   }, [history.location.search]);
 
@@ -59,33 +62,41 @@ export default function ProductList() {
     setCategories(data.filters[0].values[0].path_from_root);
 
     setItems(products);
+
+    setLoading(false);
   };
 
   return (
     <>
-      {categories ? <Breadcrumb categories={categories} /> : ""}
+      {!loading ? (
+        <>
+          {categories ? <Breadcrumb categories={categories} /> : ""}
 
-      <Container className="productList pb-16">
-        <Row>
-          <Col md={12}>
-            <ul className="list-unstyled m-0">
-              {items.map((info) => (
-                <li>
-                  <Product
-                    id={info.id}
-                    title={info.title}
-                    price={info.price}
-                    thumbnail={info.thumbnail}
-                    location={info.location}
-                    categories={categories}
-                    free_shipping={info.free_shipping}
-                  />
-                </li>
-              ))}
-            </ul>
-          </Col>
-        </Row>
-      </Container>
+          <Container className="productList pb-16">
+            <Row>
+              <Col md={12}>
+                <ul className="list-unstyled m-0">
+                  {items.map((info) => (
+                    <li>
+                      <Product
+                        id={info.id}
+                        title={info.title}
+                        price={info.price}
+                        thumbnail={info.thumbnail}
+                        location={info.location}
+                        categories={categories}
+                        free_shipping={info.free_shipping}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      ) : (
+        <LoadingSpinner />
+      )}
     </>
   );
 }
